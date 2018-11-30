@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <MASShortcut/Shortcut.h>
+#import "FinderLogicHelper.h"
+#import <ServiceManagement/ServiceManagement.h>
 
 @interface AppDelegate ()
 
@@ -15,7 +18,16 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+//    NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+//    BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+//
+//    NSLog(@"%hhd", accessibilityEnabled);
+
+    [[MASShortcutBinder sharedBinder]
+     bindShortcutWithDefaultsKey:kPreferenceGlobalShortcut
+     toAction:^{
+         [[FinderLogicHelper getInstance] processFinderLogic];
+     }];
 }
 
 

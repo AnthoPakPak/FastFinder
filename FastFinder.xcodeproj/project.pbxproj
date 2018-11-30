@@ -12,9 +12,18 @@
 		8ED3D8A521B1B7430059AFF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */; };
 		8ED3D8A821B1B7430059AFF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A621B1B7430059AFF9 /* Main.storyboard */; };
 		8ED3D8AB21B1B7430059AFF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8AA21B1B7430059AFF9 /* main.m */; };
+		8ED3D8B521B1BAD40059AFF9 /* FinderLogicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8B421B1BAD40059AFF9 /* FinderLogicHelper.m */; };
+		8ED3D8B721B1BF300059AFF9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED3D8B621B1BF300059AFF9 /* ScriptingBridge.framework */; };
+		8ED3D8B921B1BF4B0059AFF9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED3D8B821B1BF4B0059AFF9 /* CoreServices.framework */; };
+		8ED3D8BB21B1BF500059AFF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED3D8BA21B1BF500059AFF9 /* Cocoa.framework */; };
+		8ED3D8BE21B1C0CF0059AFF9 /* UserSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */; };
+		F65E428CB6ABEE3EF09800AC /* libPods-FastFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 398C7D0E9DA430BBEA0B09EB /* libPods-FastFinder.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04FFAE9FB767C6D853FBDCBC /* Pods-FastFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastFinder/Pods-FastFinder.release.xcconfig"; sourceTree = "<group>"; };
+		398C7D0E9DA430BBEA0B09EB /* libPods-FastFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D09F07E1DAAECD214DAA955 /* Pods-FastFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FastFinder/Pods-FastFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		8ED3D89B21B1B7420059AFF9 /* FastFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED3D89E21B1B7420059AFF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -25,6 +34,14 @@
 		8ED3D8A921B1B7430059AFF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ED3D8AA21B1B7430059AFF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8ED3D8AC21B1B7430059AFF9 /* FastFinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastFinder.entitlements; sourceTree = "<group>"; };
+		8ED3D8B221B1B88E0059AFF9 /* Finder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Finder.h; sourceTree = "<group>"; };
+		8ED3D8B321B1BAD40059AFF9 /* FinderLogicHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderLogicHelper.h; sourceTree = "<group>"; };
+		8ED3D8B421B1BAD40059AFF9 /* FinderLogicHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderLogicHelper.m; sourceTree = "<group>"; };
+		8ED3D8B621B1BF300059AFF9 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		8ED3D8B821B1BF4B0059AFF9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		8ED3D8BA21B1BF500059AFF9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSettingsHelper.h; sourceTree = "<group>"; };
+		8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSettingsHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +49,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ED3D8BB21B1BF500059AFF9 /* Cocoa.framework in Frameworks */,
+				8ED3D8B921B1BF4B0059AFF9 /* CoreServices.framework in Frameworks */,
+				8ED3D8B721B1BF300059AFF9 /* ScriptingBridge.framework in Frameworks */,
+				F65E428CB6ABEE3EF09800AC /* libPods-FastFinder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +64,8 @@
 			children = (
 				8ED3D89D21B1B7420059AFF9 /* FastFinder */,
 				8ED3D89C21B1B7420059AFF9 /* Products */,
+				D92E92C93178A018365A8B7F /* Pods */,
+				923F1EB5E6CE4B3BC6CE9557 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,17 +80,42 @@
 		8ED3D89D21B1B7420059AFF9 /* FastFinder */ = {
 			isa = PBXGroup;
 			children = (
+				8ED3D8A621B1B7430059AFF9 /* Main.storyboard */,
 				8ED3D89E21B1B7420059AFF9 /* AppDelegate.h */,
 				8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */,
 				8ED3D8A121B1B7420059AFF9 /* ViewController.h */,
 				8ED3D8A221B1B7420059AFF9 /* ViewController.m */,
+				8ED3D8B321B1BAD40059AFF9 /* FinderLogicHelper.h */,
+				8ED3D8B421B1BAD40059AFF9 /* FinderLogicHelper.m */,
+				8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */,
+				8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */,
 				8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */,
-				8ED3D8A621B1B7430059AFF9 /* Main.storyboard */,
 				8ED3D8A921B1B7430059AFF9 /* Info.plist */,
 				8ED3D8AA21B1B7430059AFF9 /* main.m */,
+				8ED3D8B221B1B88E0059AFF9 /* Finder.h */,
 				8ED3D8AC21B1B7430059AFF9 /* FastFinder.entitlements */,
 			);
 			path = FastFinder;
+			sourceTree = "<group>";
+		};
+		923F1EB5E6CE4B3BC6CE9557 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8ED3D8BA21B1BF500059AFF9 /* Cocoa.framework */,
+				8ED3D8B821B1BF4B0059AFF9 /* CoreServices.framework */,
+				8ED3D8B621B1BF300059AFF9 /* ScriptingBridge.framework */,
+				398C7D0E9DA430BBEA0B09EB /* libPods-FastFinder.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D92E92C93178A018365A8B7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D09F07E1DAAECD214DAA955 /* Pods-FastFinder.debug.xcconfig */,
+				04FFAE9FB767C6D853FBDCBC /* Pods-FastFinder.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ED3D8AF21B1B7430059AFF9 /* Build configuration list for PBXNativeTarget "FastFinder" */;
 			buildPhases = (
+				9218DCC44D8A4ED086FFAB79 /* [CP] Check Pods Manifest.lock */,
 				8ED3D89721B1B7420059AFF9 /* Sources */,
 				8ED3D89821B1B7420059AFF9 /* Frameworks */,
 				8ED3D89921B1B7420059AFF9 /* Resources */,
+				E82DCA575E147AFAE4D6AC9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -101,6 +151,11 @@
 				TargetAttributes = {
 					8ED3D89A21B1B7420059AFF9 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -134,12 +189,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9218DCC44D8A4ED086FFAB79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FastFinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E82DCA575E147AFAE4D6AC9E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FastFinder/Pods-FastFinder-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MASShortcut/MASShortcut.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MASShortcut.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastFinder/Pods-FastFinder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8ED3D89721B1B7420059AFF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ED3D8B521B1BAD40059AFF9 /* FinderLogicHelper.m in Sources */,
 				8ED3D8A321B1B7420059AFF9 /* ViewController.m in Sources */,
+				8ED3D8BE21B1C0CF0059AFF9 /* UserSettingsHelper.m in Sources */,
 				8ED3D8AB21B1B7430059AFF9 /* main.m in Sources */,
 				8ED3D8A021B1B7420059AFF9 /* AppDelegate.m in Sources */,
 			);
@@ -272,9 +368,9 @@
 		};
 		8ED3D8B021B1B7430059AFF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D09F07E1DAAECD214DAA955 /* Pods-FastFinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FastFinder/FastFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6A546753D6;
@@ -290,9 +386,9 @@
 		};
 		8ED3D8B121B1B7430059AFF9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04FFAE9FB767C6D853FBDCBC /* Pods-FastFinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FastFinder/FastFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6A546753D6;

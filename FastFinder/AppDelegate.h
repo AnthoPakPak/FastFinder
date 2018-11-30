@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+static NSString *const kPreferenceGlobalShortcut = @"GlobalShortcut";
 
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @end
 
