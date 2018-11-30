@@ -15,16 +15,15 @@
 
 //CONFIGURATION
 
-//static CGFloat const ANIMATION_SPEED = 0.4; //in seconds
-
 //for first launch
 static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
-static CGFloat const DEFAULT_FINDER_WIDTH = 1440;
+//static CGFloat const DEFAULT_FINDER_WIDTH = 1440;
 
 
 @implementation FinderLogicHelper {
     CGFloat screenHeight;
-    
+    CGFloat screenWidth;
+
     NSInteger indexOfVisorFinderWindow;
     CGFloat lastFinderHeight;
 }
@@ -36,6 +35,11 @@ static FinderLogicHelper *instance = nil;
     @synchronized(self) {
         if(instance==nil) {
             instance = [FinderLogicHelper new];
+            
+            //defaults values
+            CGRect screenRect = [[NSScreen mainScreen] frame];
+            instance->screenWidth = screenRect.size.width;
+            instance->screenHeight = screenRect.size.height;
         }
     }
     return instance;
@@ -84,23 +88,13 @@ static FinderLogicHelper *instance = nil;
     
     
     
-    CGRect screenRect = [[NSScreen mainScreen] frame];
-    //    CGFloat screenWidth = screenRect.size.width;
-    screenHeight = screenRect.size.height;
+    
     
     CGFloat finderHeight = finderWindow.bounds.size.height;
     NSLog(@"finderHeight : %f", finderHeight);
     
-    
     BOOL animated = [UserSettingsHelper getInstance].animated;
-    //    CGFloat finderWidth = screenWidth;
     
-    
-    
-    
-    //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    //    dispatch_queue_t queue = dispatch_get_main_queue();
-    //    double secondsToFire = 0.015;
     
     if (show) {
         NSLog(@"Show finder");
@@ -109,119 +103,20 @@ static FinderLogicHelper *instance = nil;
         finder.visible = YES;
         
         //set size
-        //        [finderWindow setBounds:NSMakeRect(0, screenHeight, screenWidth, lastFinderHeight)]; //on set les bounds suivants : {toutAGaucheDeLecran, enDehorsDeLecranEnBas_pourEtreInvisible, tailleEcran, lastFinderHeight)}
-        
-        
-        //        yAxis = screenHeight;
-        //
-        ////        dispatch_async(dispatch_get_main_queue(), ^{
-        //            _timer = CreateDispatchTimer(secondsToFire, queue, ^{
-        //                NSLog(@"SHOW :Set position : %f", yAxis);
-        //                yAxis -= ANIMATION_SPEED;
-        //
-        //                [finderWindow setPosition:NSMakePoint(0, yAxis)];
-        //
-        //                if (yAxis <= screenHeight - lastFinderHeight) {
-        //                    [self cancelTimer];
-        //                    [finderWindow setPosition:NSMakePoint(0, screenHeight - lastFinderHeight)]; //un dernier coup pour être sur d'arriver au bon endroit
-        //                }
-        //            });
-        ////        });
-        
-        
-        
-        //        yAxis = screenHeight;
-        //
-        //        dispatch_async_repeated(0.01, dispatch_get_main_queue(), ^(BOOL *stop) {
-        //            NSLog(@"SHOW :Set position : %f", yAxis);
-        //            yAxis -= ANIMATION_SPEED;
-        //
-        //            [finderWindow setPosition:NSMakePoint(0, yAxis)];
-        //
-        //            if (yAxis <= screenHeight - lastFinderHeight) {
-        //                *stop = YES;
-        //                [finderWindow setPosition:NSMakePoint(0, screenHeight - lastFinderHeight)]; //un dernier coup pour être sur d'arriver au bon endroit
-        //            }
-        //        });
-        
-        
-        //animate position
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        //            for (int i = screenHeight; i >= screenHeight - lastFinderHeight; i = i - ANIMATION_SPEED) {
-        //                NSLog(@"SHOW :Set position : %d", i);
-        //                dispatch_async(dispatch_get_main_queue(), ^{
-        //                    [finderWindow setPosition:NSMakePoint(0, i)];
-        //                });
-        //            }
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                [finderWindow setPosition:NSMakePoint(0, screenHeight - lastFinderHeight)]; //un dernier coup pour être sur d'arriver au bon endroit
-        //            });
-        //        });
-        
-        
         if (lastFinderHeight == 0) {
             lastFinderHeight = DEFAULT_FINDER_HEIGHT;
-            [finderWindow setBounds:NSMakeRect(0, screenHeight, DEFAULT_FINDER_WIDTH, lastFinderHeight)]; //on set les bounds suivants : {toutAGaucheDeLecran, enDehorsDeLecranEnBas_pourEtreInvisible, tailleEcran, lastFinderHeight)}
+            [finderWindow setBounds:NSMakeRect(0, screenHeight, screenWidth, lastFinderHeight)]; //on set les bounds suivants : {toutAGaucheDeLecran, enDehorsDeLecranEnBas_pourEtreInvisible, tailleEcran, lastFinderHeight)}
         }
         
         if (animated) {
             [self animateOffsetWindow:finderWindow directionUp:YES completionHandler:nil];
         }
-        
-        
-        
     } else {
         NSLog(@"Hide finder");
         
         if (finderHeight != 0) {
             lastFinderHeight = finderHeight;
         }
-        
-        //        yAxis = screenHeight - lastFinderHeight;
-        //
-        ////        dispatch_async(dispatch_get_main_queue(), ^{
-        //            _timer = CreateDispatchTimer(secondsToFire, queue, ^{
-        //                NSLog(@"HIDE :Set position : %f", yAxis);
-        //                yAxis += ANIMATION_SPEED;
-        //
-        //                [finderWindow setPosition:NSMakePoint(0, yAxis)];
-        //
-        //                if (yAxis >= screenHeight) {
-        //                    [self cancelTimer];
-        //                    finder.visible = NO;
-        //                }
-        //            });
-        ////        });
-        
-        
-        //        yAxis = screenHeight - lastFinderHeight;
-        //
-        //        dispatch_async_repeated(0.01, dispatch_get_main_queue(), ^(BOOL *stop) {
-        //            NSLog(@"HIDE :Set position : %f", yAxis);
-        //            yAxis += ANIMATION_SPEED;
-        //
-        //            [finderWindow setPosition:NSMakePoint(0, yAxis)]; //un dernier coup pour être sur d'arriver au bon endroit
-        //
-        //            if (yAxis >= screenHeight) {
-        //                *stop = YES;
-        //
-        //                finder.visible = NO;
-        //            }
-        //        });
-        
-        //animate position
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        //            for (int i = screenHeight - lastFinderHeight; i <= screenHeight; i = i + ANIMATION_SPEED) {
-        //                NSLog(@"HIDE : Set position : %d", i);
-        //                dispatch_async(dispatch_get_main_queue(), ^{
-        //                    [finderWindow setPosition:NSMakePoint(0, i)];
-        //                });
-        //            }
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                finder.visible = NO;
-        //            });
-        //        });
-        
         
         if (animated) {
             [self animateOffsetWindow:finderWindow directionUp:NO completionHandler:^{
@@ -235,7 +130,6 @@ static FinderLogicHelper *instance = nil;
         } else {
             finder.visible = NO;
         }
-        
     }
 }
 
@@ -250,17 +144,11 @@ static FinderLogicHelper *instance = nil;
         float kAccordingToDirection = directionUp ? 1 - k : k;
         
         if (doSlide) {
-            
             NSLog(@"kAccordingToDirection = %f", kAccordingToDirection);
             
             float offset = kAccordingToDirection * lastFinderHeight + (screenHeight - lastFinderHeight);
             NSLog(@"offset = %f", offset);
-            //                float offset = SLIDE_DIRECTION(direction, SLIDE_EASING(k));
-            //                [self placeWindow:_window offset:offset];
-            //                float offset = SLIDE_DIRECTION(NO, SLIDE_EASING(k)) * lastFinderHeight;
-            //                NSLog(@"SHOW :Set position : %f", offset);
             [finderWindow setPosition:NSMakePoint(0, offset)];
-            
         }
         
         //            usleep(_background ? 1000 : 5000);         // 1 or 5ms
