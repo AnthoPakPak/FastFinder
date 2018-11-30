@@ -22,6 +22,11 @@
 //    BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
 //
 //    NSLog(@"%hhd", accessibilityEnabled);
+    
+//    [NSApp setActivationPolicy: NSApplicationActivationPolicyAccessory]; //no dock icon
+//        ProcessSerialNumber psn = { 0, kCurrentProcess };
+//        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+
 
     [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:kPreferenceGlobalShortcut

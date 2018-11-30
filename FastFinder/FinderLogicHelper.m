@@ -10,6 +10,7 @@
 
 #import <ScriptingBridge/ScriptingBridge.h>
 #import "Finder.h"
+#import "SystemEvents.h"
 
 #import "UserSettingsHelper.h"
 
@@ -24,7 +25,7 @@ static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
     CGFloat screenHeight;
     CGFloat screenWidth;
 
-    NSInteger indexOfVisorFinderWindow;
+    NSInteger idOfVisorFinderWindow;
     CGFloat lastFinderHeight;
 }
 
@@ -49,6 +50,8 @@ static FinderLogicHelper *instance = nil;
     // this is the finder
     FinderApplication * finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.Finder"];
     //    finder.launchFlags = kLSLaunchAndHide;
+//    SystemEventsApplication * systEvt = [SBApplication applicationWithBundleIdentifier:@"com.apple.SystemEvents"]; //pour envoyer des shortcuts à l'app https://github.com/tcurdt/shellhere/blob/master/main.m#L114
+    
     
     NSLog(@"Frontmost : %hhd | Visible : %hhd", finder.frontmost, finder.visible);
     
@@ -58,40 +61,10 @@ static FinderLogicHelper *instance = nil;
 
 -(void) show:(BOOL)show finder:(FinderApplication*)finder {
     SBElementArray * finderWindows = finder.FinderWindows;
-    FinderWindow *finderWindow = finderWindows[0];
-    //    __block CGFloat yAxis;
-    
-    //    [self cancelTimer]; //si on fait le raccourci plusieurs fois de suite
-    //    if (indexOfVisorFinderWindow == 0) {
-    //        finderWindow = finderWindows[0];
-    //        indexOfVisorFinderWindow = finderWindow.id;
-    //    } else {
-    //        for (FinderWindow *win in finderWindows) {
-    //            NSLog(@"win : %@", win.properties);
-    //
-    //            if (win.id == indexOfVisorFinderWindow) {
-    //                finderWindow = win;
-    ////                finderWindow.index = 1;
-    //            } else {
-    ////                [win setPosition:NSMakePoint(0, 0)];
-    //            }
-    //        }
-    //
-    //        if (finderWindow.index != 1) {≤
-    //            for (FinderWindow *win in finderWindows) {
-    //                win.index = 1;
-    //            }
-    //            finderWindow.index = 0;
-    //        }
-    //    }
-    
-    
-    
-    
-    
+    FinderWindow *finderWindow;
     
     CGFloat finderHeight = finderWindow.bounds.size.height;
-    NSLog(@"finderHeight : %f", finderHeight);
+//    NSLog(@"finderHeight : %f", finderHeight);
     
     BOOL animated = [UserSettingsHelper getInstance].animated;
     
@@ -101,6 +74,8 @@ static FinderLogicHelper *instance = nil;
         //                [finder activate];
         [self runCommand:@"open -j -a Finder"]; //activate without moving window when it outside of screen
         finder.visible = YES;
+
+        finderWindow = [self getFinderWindowFromWindows:finderWindows]; //it should be done after finder.visible = YES
         
         //set size
         if (lastFinderHeight == 0) {
@@ -114,6 +89,8 @@ static FinderLogicHelper *instance = nil;
     } else {
         NSLog(@"Hide finder");
         
+        finderWindow = [self getFinderWindowFromWindows:finderWindows];
+
         if (finderHeight != 0) {
             lastFinderHeight = finderHeight;
         }
@@ -123,9 +100,10 @@ static FinderLogicHelper *instance = nil;
                 //si la frontmost window au moment de faire le raccourci prend tout l'ecran (window.bounds == screen.bounds)
                 finder.visible = NO; //c'est ceci qui cause le glitch qui est visible quand il n'y a pas d'autre fenetre derriere, car quand on réactive le finder après l'avoir hidden, il restaure position
                 
-                //si la frontmost window au moment de faire le raccourci NE prend PAS tout l'ecran (window.bounds == screen.bounds)
-                //            finder.frontmost = NO;
-                //            [finderWindow setPosition:NSMakePoint(1440, 900)];
+                //si la frontmost window au moment de faire le raccourci NE prend PAS tout l'ecran (window.bounds == screen.bounds), mais le probleme de cette version, c'est que le fait de ne pas visible=NO le finder, fait que si on clique sur l'icone manuellement, il reste à sa position…
+//                finder.frontmost = NO;
+////                finder.visible = NO;
+//                [finderWindow setPosition:NSMakePoint(-1440, 900)];
             }];
         } else {
             finder.visible = NO;
@@ -133,23 +111,56 @@ static FinderLogicHelper *instance = nil;
     }
 }
 
+-(FinderWindow*) getFinderWindowFromWindows:(SBElementArray*)finderWindows {
+    FinderWindow *finderWindow = nil;
+
+    if (finderWindows.count > 1) {
+        for (FinderWindow *finderWin in finderWindows) {
+            //            NSLog(@"win : %@", finderWin.properties); //this can cause glitch…
+            
+            if (finderWin.id == idOfVisorFinderWindow) {
+                finderWindow = finderWin;
+                finderWindow.index = 1; //setting this window the frontmost one
+            }
+        }
+        
+        //don't really know why i have to do this a second time, but without this it doesn't work
+        if (finderWindow.id != idOfVisorFinderWindow) {
+            NSLog(@"Window isn't the good one, searching for the good one…");
+            for (FinderWindow *finderWin in finderWindows) {
+                if (finderWin.id == idOfVisorFinderWindow) {
+                    finderWindow = finderWin;
+                }
+            }
+        }
+    }
+    
+    if (finderWindow == nil) {
+        NSLog(@"Window not found, taking the frontmost one");
+        finderWindow = finderWindows[0];
+    }
+    
+//    NSLog(@"Window : id:%ld, name:%@, index:%ld, idOfVisorFinderWindow:%ld", finderWindow.id, finderWindow.name, finderWindow.index, idOfVisorFinderWindow);
+    
+    idOfVisorFinderWindow = finderWindow.id;
+    return finderWindow;
+}
+
+
 - (void)animateOffsetWindow:(FinderWindow *)finderWindow directionUp:(BOOL)directionUp completionHandler:(void (^)(void))completionHandler { //direction YES is UP (show)
     NSTimeInterval t;
     NSDate* date = [NSDate date];
     float animationSpeed = [UserSettingsHelper getInstance].animationVelocity;
-    BOOL doSlide = YES;
+    
     while (animationSpeed >= (t = -[date timeIntervalSinceNow])) {
-        // animation update loop
         float k = t / animationSpeed; //k varie de 0 à 1
         float kAccordingToDirection = directionUp ? 1 - k : k;
         
-        if (doSlide) {
-            NSLog(@"kAccordingToDirection = %f", kAccordingToDirection);
-            
-            float offset = kAccordingToDirection * lastFinderHeight + (screenHeight - lastFinderHeight);
-            NSLog(@"offset = %f", offset);
-            [finderWindow setPosition:NSMakePoint(0, offset)];
-        }
+//        NSLog(@"kAccordingToDirection = %f", kAccordingToDirection);
+        
+        float offset = kAccordingToDirection * lastFinderHeight + (screenHeight - lastFinderHeight);
+//            NSLog(@"offset = %f", offset);
+        [finderWindow setPosition:NSMakePoint(0, offset)];
         
         //            usleep(_background ? 1000 : 5000);         // 1 or 5ms
         usleep(3000);

@@ -42,6 +42,7 @@
 		8ED3D8BA21B1BF500059AFF9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSettingsHelper.h; sourceTree = "<group>"; };
 		8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSettingsHelper.m; sourceTree = "<group>"; };
+		8ED3D8BF21B1DC150059AFF9 /* SystemEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 				8ED3D8A921B1B7430059AFF9 /* Info.plist */,
 				8ED3D8AA21B1B7430059AFF9 /* main.m */,
 				8ED3D8B221B1B88E0059AFF9 /* Finder.h */,
+				8ED3D8BF21B1DC150059AFF9 /* SystemEvents.h */,
 				8ED3D8AC21B1B7430059AFF9 /* FastFinder.entitlements */,
 			);
 			path = FastFinder;
