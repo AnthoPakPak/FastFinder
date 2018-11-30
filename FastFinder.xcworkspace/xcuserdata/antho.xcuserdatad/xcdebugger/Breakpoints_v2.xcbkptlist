@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FastFinder/UserSettingsHelper.m"
-            timestampString = "565309328.344272"
+            timestampString = "565310643.2693141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FastFinder/FinderLogicHelper.m"
-            timestampString = "565309328.344335"
+            timestampString = "565310643.26938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-getFinderWindowFromWindows:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FastFinder/FinderLogicHelper.m"
-            timestampString = "565309328.344944"
+            timestampString = "565310643.27001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-getFinderWindowFromWindows:"
             landmarkType = "7">
          </BreakpointContent>

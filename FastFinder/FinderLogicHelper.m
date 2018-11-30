@@ -22,6 +22,8 @@ static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
 
 
 @implementation FinderLogicHelper {
+    FinderApplication * finder;
+    
     CGFloat screenHeight;
     CGFloat screenWidth;
 
@@ -48,7 +50,7 @@ static FinderLogicHelper *instance = nil;
 
 -(void) processFinderLogic {
     // this is the finder
-    FinderApplication * finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.Finder"];
+    finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.Finder"];
     //    finder.launchFlags = kLSLaunchAndHide;
 //    SystemEventsApplication * systEvt = [SBApplication applicationWithBundleIdentifier:@"com.apple.SystemEvents"]; //pour envoyer des shortcuts à l'app https://github.com/tcurdt/shellhere/blob/master/main.m#L114
     
@@ -63,7 +65,6 @@ static FinderLogicHelper *instance = nil;
     SBElementArray * finderWindows = finder.FinderWindows;
     FinderWindow *finderWindow;
     
-    CGFloat finderHeight = finderWindow.bounds.size.height;
 //    NSLog(@"finderHeight : %f", finderHeight);
     
     BOOL animated = [UserSettingsHelper getInstance].animated;
@@ -90,6 +91,7 @@ static FinderLogicHelper *instance = nil;
         NSLog(@"Hide finder");
         
         finderWindow = [self getFinderWindowFromWindows:finderWindows];
+        CGFloat finderHeight = finderWindow.bounds.size.height;
 
         if (finderHeight != 0) {
             lastFinderHeight = finderHeight;
@@ -137,7 +139,16 @@ static FinderLogicHelper *instance = nil;
     
     if (finderWindow == nil) {
         NSLog(@"Window not found, taking the frontmost one");
-        finderWindow = finderWindows[0];
+        if (finderWindows.count > 0) {
+            finderWindow = finderWindows[0];
+        } else {
+//            NSURL *u = [NSURL fileURLWithPath:@"/tmp"];
+//            FinderFinderWindow *w = [[[finder classForScriptingClass:@"Finder window"] alloc] init];
+//                                       [[finder FinderWindows] addObject:w];
+//                                       [w setTarget:u];
+
+//            [self runCommand:@"osascript -e \"tell application \"Finder\" to make new Finder window\""];
+        }
     }
     
 //    NSLog(@"Window : id:%ld, name:%@, index:%ld, idOfVisorFinderWindow:%ld", finderWindow.id, finderWindow.name, finderWindow.index, idOfVisorFinderWindow);
