@@ -18,15 +18,9 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-//    NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
-//    BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
-//
-//    NSLog(@"%hhd", accessibilityEnabled);
-    
-//    [NSApp setActivationPolicy: NSApplicationActivationPolicyAccessory]; //no dock icon
-//        ProcessSerialNumber psn = { 0, kCurrentProcess };
-//        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
-
+    //no dock icon
+    [NSApp windows][0].canHide = NO;
+    [NSApp setActivationPolicy: NSApplicationActivationPolicyAccessory];
 
     [[MASShortcutBinder sharedBinder]
      bindShortcutWithDefaultsKey:kPreferenceGlobalShortcut
