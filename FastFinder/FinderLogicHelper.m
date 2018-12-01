@@ -142,6 +142,7 @@ static FinderLogicHelper *instance = nil;
         if (finderWindows.count > 0) {
             finderWindow = finderWindows[0];
         } else {
+            //Code to open a new Finder window. Currently it doesn't work well so I remove it.
 //            NSURL *u = [NSURL fileURLWithPath:@"/tmp"];
 //            FinderFinderWindow *w = [[[finder classForScriptingClass:@"Finder window"] alloc] init];
 //                                       [[finder FinderWindows] addObject:w];
@@ -158,7 +159,7 @@ static FinderLogicHelper *instance = nil;
 }
 
 
-- (void)animateOffsetWindow:(FinderWindow *)finderWindow directionUp:(BOOL)directionUp completionHandler:(void (^)(void))completionHandler { //direction YES is UP (show)
+- (void)animateOffsetWindow:(FinderWindow *)finderWindow directionUp:(BOOL)directionUp completionHandler:(void (^)(void))completionHandler {
     NSTimeInterval t;
     NSDate* date = [NSDate date];
     float animationSpeed = [UserSettingsHelper getInstance].animationVelocity;
@@ -173,7 +174,6 @@ static FinderLogicHelper *instance = nil;
 //            NSLog(@"offset = %f", offset);
         [finderWindow setPosition:NSMakePoint(0, offset)];
         
-        //            usleep(_background ? 1000 : 5000);         // 1 or 5ms
         usleep(3000);
     }
     

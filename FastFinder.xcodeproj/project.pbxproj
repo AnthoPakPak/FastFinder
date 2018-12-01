@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8ED3D8A021B1B7420059AFF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */; };
-		8ED3D8A321B1B7420059AFF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A221B1B7420059AFF9 /* ViewController.m */; };
+		8ED3D8A321B1B7420059AFF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */; };
 		8ED3D8A521B1B7430059AFF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */; };
 		8ED3D8A821B1B7430059AFF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ED3D8A621B1B7430059AFF9 /* Main.storyboard */; };
 		8ED3D8AB21B1B7430059AFF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8AA21B1B7430059AFF9 /* main.m */; };
@@ -27,8 +27,8 @@
 		8ED3D89B21B1B7420059AFF9 /* FastFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED3D89E21B1B7420059AFF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8ED3D8A121B1B7420059AFF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8ED3D8A221B1B7420059AFF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8ED3D8A121B1B7420059AFF9 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ED3D8A721B1B7430059AFF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8ED3D8A921B1B7430059AFF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,8 +84,8 @@
 				8ED3D8A621B1B7430059AFF9 /* Main.storyboard */,
 				8ED3D89E21B1B7420059AFF9 /* AppDelegate.h */,
 				8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */,
-				8ED3D8A121B1B7420059AFF9 /* ViewController.h */,
-				8ED3D8A221B1B7420059AFF9 /* ViewController.m */,
+				8ED3D8A121B1B7420059AFF9 /* SettingsViewController.h */,
+				8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */,
 				8ED3D8B321B1BAD40059AFF9 /* FinderLogicHelper.h */,
 				8ED3D8B421B1BAD40059AFF9 /* FinderLogicHelper.m */,
 				8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */,
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ED3D8B521B1BAD40059AFF9 /* FinderLogicHelper.m in Sources */,
-				8ED3D8A321B1B7420059AFF9 /* ViewController.m in Sources */,
+				8ED3D8A321B1B7420059AFF9 /* SettingsViewController.m in Sources */,
 				8ED3D8BE21B1C0CF0059AFF9 /* UserSettingsHelper.m in Sources */,
 				8ED3D8AB21B1B7430059AFF9 /* main.m in Sources */,
 				8ED3D8A021B1B7420059AFF9 /* AppDelegate.m in Sources */,
@@ -381,6 +381,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acocagne.FastFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -399,6 +400,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acocagne.FastFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

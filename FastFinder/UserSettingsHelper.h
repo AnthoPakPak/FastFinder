@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserSettingsHelper : NSObject
 
-+(UserSettingsHelper*)getInstance;
-
 @property(nonatomic) BOOL launchOnStartup;
 @property(nonatomic) BOOL animated;
 @property(nonatomic) double animationVelocity;
 
++(UserSettingsHelper*)getInstance;
+-(void) setDefaultsSettings;
 
 @end
 

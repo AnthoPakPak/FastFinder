@@ -27,6 +27,12 @@ static UserSettingsHelper *instance = nil;
     return instance;
 }
 
+-(void) setDefaultsSettings {
+    self.launchOnStartup = YES;
+    self.animated = YES;
+    self.animationVelocity = 0.4;
+}
+
 -(void) restoreSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _launchOnStartup = [defaults boolForKey:kSettingsLaunchOnStartup];

@@ -6,36 +6,39 @@
 //  Copyright © 2018 Anthonin Cocagne. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import <MASShortcut/Shortcut.h>
 #import "UserSettingsHelper.h"
 
 
-@interface ViewController () {
+@interface SettingsViewController () {
     
 }
 
-@property(strong) IBOutlet MASShortcutView *customShortcutView;
+@property (strong) IBOutlet MASShortcutView *customShortcutView;
 @property (weak) IBOutlet NSButton *launchAtStartupCheckbox;
 @property (weak) IBOutlet NSButton *animatedCheckbox;
 @property (weak) IBOutlet NSSlider *animationVelocitySlider;
 @property (weak) IBOutlet NSTextField *animationVelocityLabel;
 
+@property (weak) IBOutlet NSTextField *versionNumberLabel;
 
 
 @end
 
-@implementation ViewController
+@implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _customShortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
+    _customShortcutView.shortcutValidator.allowAnyShortcutWithOptionModifier = YES; //allow alt key
 
-    self.customShortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
-    self.customShortcutView.shortcutValidator.allowAnyShortcutWithOptionModifier = YES; //allow alt key
-    // Do any additional setup after loading the view.
-
+    [self setDefaultsSettingsIfNeeded];
     [self restoreSettingsStates];
+    
+    [self setVersionNumber];
 }
 
 
@@ -48,6 +51,20 @@
 
 #pragma mark - Settings
 
+-(void) setDefaultsSettingsIfNeeded {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL isFirstLaunch = ![defaults boolForKey:@"appAlreadyLaunched"];
+    if (isFirstLaunch) {
+        [defaults setBool:YES forKey:@"appAlreadyLaunched"];
+        [[UserSettingsHelper getInstance] setDefaultsSettings];
+        
+        //show Spaces settings on first launch
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"useWithSpacesSegue" sender:self];
+        });
+    }
+}
+
 -(void) restoreSettingsStates {
     _launchAtStartupCheckbox.state = [UserSettingsHelper getInstance].launchOnStartup;
     _animatedCheckbox.state = [UserSettingsHelper getInstance].animated;
@@ -55,6 +72,8 @@
     [self didChangeAnimationVelocity:_animationVelocitySlider];
 }
 
+
+#pragma mark Outlets changes
 
 - (IBAction)didChangeLaunchOnStartup:(NSButton*)button {
     NSLog(@"Setting launchOnStartup to %ld", (long)button.state);
@@ -73,6 +92,15 @@
     
     [UserSettingsHelper getInstance].animationVelocity = slider.doubleValue;
     _animationVelocityLabel.stringValue = [NSString stringWithFormat:@"%.1f seconds", slider.doubleValue];
+}
+
+
+#pragma mark - Misc
+
+-(void) setVersionNumber {
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDict objectForKey:@"CFBundleShortVersionString"]; // example: 1.0.0
+    _versionNumberLabel.stringValue = appVersion;
 }
 
 @end

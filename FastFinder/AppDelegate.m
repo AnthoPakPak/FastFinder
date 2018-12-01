@@ -35,4 +35,9 @@
 }
 
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    //to reopen settings window
+    [[NSApp windows][0] makeKeyAndOrderFront:self];
+}
+
 @end
