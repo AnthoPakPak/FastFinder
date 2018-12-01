@@ -4,7 +4,7 @@ FastFinder goal is to always have a Finder window at a key press. Set your prefe
 
 **FastFinder is fully compatible with MacOS Mojave and compliant with System Integrity Protection, so that you don't have to disable it.**
 
-![FastFinder Demo](https://media.giphy.com/media/fdOP3IHuijCMH2EFHD/giphy.gif)
+![FastFinder Demo](FastFinderDemo.gif)
 
 
 ## How to use
