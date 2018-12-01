@@ -6,7 +6,7 @@ FastFinder goal is to always have a Finder window at a key press. Set your prefe
 
 ## How to use
 
-- Download the [last version of FastFinder](http://…)
+- Download the [last version of FastFinder](https://github.com/AnthoPakPak/FastFinder/releases/download/0.1/FastFinder_v0.1.dmg)
 - Drag it into your Applications folder
 - Launch it and set your shortcut and settings
 - If you are working with multiple Spaces, right click on Finder dock icon > `Options` > tick `All desktops` (I was unable to set it automatically currently, due to MacOS restrictions)
