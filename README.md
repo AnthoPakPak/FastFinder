@@ -4,6 +4,9 @@ FastFinder goal is to always have a Finder window at a key press. Set your prefe
 
 **FastFinder is fully compatible with MacOS Mojave and compliant with System Integrity Protection, so that you don't have to disable it.**
 
+![FastFinder Demo](https://media.giphy.com/media/fdOP3IHuijCMH2EFHD/giphy.gif)
+
+
 ## How to use
 
 - Download the [last version of FastFinder](https://github.com/AnthoPakPak/FastFinder/releases/download/0.1/FastFinder_v0.1.dmg)
@@ -16,13 +19,13 @@ FastFinder goal is to always have a Finder window at a key press. Set your prefe
 
 FastFinder is written in `Objective-C` and is a standalone app. It listens for shortcut to bring your Finder. When you trigger the shortcut, it will find your Finder window and bring it to the front. It saves this Finder window `id` in order to always present the same window, even if you have multiple Finder windows opened. Basically, if Finder is not on screen, it shows it, and if it is, it hides it.
 
-
 ## Limitations
 
 In order to comply with SIP protection, FastFinder is working with `AppleScript` only (`ScriptingBridge` to be precise). This means that it doesn't inject any code into Finder. Therefore, the capabilities of FastFinder are quite limited.
 
 The sliding animation is experimental and you can see some quick glitches in some cases. This is due to how MacOS behaves with hidden windows.
 
+Also note that it won't work on fullscreen Spaces, as it will switch to an non-fullscreen Space.
 
 ## Contribution
 
