@@ -17,6 +17,7 @@
 		8ED3D8B921B1BF4B0059AFF9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED3D8B821B1BF4B0059AFF9 /* CoreServices.framework */; };
 		8ED3D8BB21B1BF500059AFF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED3D8BA21B1BF500059AFF9 /* Cocoa.framework */; };
 		8ED3D8BE21B1C0CF0059AFF9 /* UserSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */; };
+		8ED3D8C921B3047E0059AFF9 /* InfosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED3D8C721B3047E0059AFF9 /* InfosViewController.m */; };
 		F65E428CB6ABEE3EF09800AC /* libPods-FastFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 398C7D0E9DA430BBEA0B09EB /* libPods-FastFinder.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,8 @@
 		8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSettingsHelper.h; sourceTree = "<group>"; };
 		8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSettingsHelper.m; sourceTree = "<group>"; };
 		8ED3D8BF21B1DC150059AFF9 /* SystemEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
+		8ED3D8C621B3047E0059AFF9 /* InfosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfosViewController.h; sourceTree = "<group>"; };
+		8ED3D8C721B3047E0059AFF9 /* InfosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfosViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 			children = (
 				8ED3D8A121B1B7420059AFF9 /* SettingsViewController.h */,
 				8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */,
+				8ED3D8C621B3047E0059AFF9 /* InfosViewController.h */,
+				8ED3D8C721B3047E0059AFF9 /* InfosViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ED3D8C921B3047E0059AFF9 /* InfosViewController.m in Sources */,
 				8ED3D8B521B1BAD40059AFF9 /* FinderLogicHelper.m in Sources */,
 				8ED3D8A321B1B7420059AFF9 /* SettingsViewController.m in Sources */,
 				8ED3D8BE21B1C0CF0059AFF9 /* UserSettingsHelper.m in Sources */,

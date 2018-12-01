@@ -22,9 +22,6 @@
 @property (weak) IBOutlet NSSlider *animationVelocitySlider;
 @property (weak) IBOutlet NSTextField *animationVelocityLabel;
 
-@property (weak) IBOutlet NSTextField *versionNumberLabel;
-
-
 @end
 
 @implementation SettingsViewController
@@ -37,8 +34,6 @@
 
     [self setDefaultsSettingsIfNeeded];
     [self restoreSettingsStates];
-    
-    [self setVersionNumber];
 }
 
 
@@ -92,15 +87,6 @@
     
     [UserSettingsHelper getInstance].animationVelocity = slider.doubleValue;
     _animationVelocityLabel.stringValue = [NSString stringWithFormat:@"%.1f seconds", slider.doubleValue];
-}
-
-
-#pragma mark - Misc
-
--(void) setVersionNumber {
-    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString *appVersion = [infoDict objectForKey:@"CFBundleShortVersionString"]; // example: 1.0.0
-    _versionNumberLabel.stringValue = appVersion;
 }
 
 @end

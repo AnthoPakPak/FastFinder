@@ -829,7 +829,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="r3M-yl-sr0" kind="popover" identifier="infosSegue" popoverAnchorView="qLe-s8-yEf" popoverBehavior="t" preferredEdge="maxY" id="ylP-ab-JDy"/>
+                                    <segue destination="r3M-yl-sr0" kind="popover" popoverAnchorView="qLe-s8-yEf" popoverBehavior="t" preferredEdge="maxY" id="mfb-WI-O5I"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g51-TQ-IBZ">
@@ -898,10 +898,10 @@ from Spotlight or your Application folder</string>
             </objects>
             <point key="canvasLocation" x="75" y="1149"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Infos View Controller-->
         <scene sceneID="66m-A4-MtW">
             <objects>
-                <viewController id="r3M-yl-sr0" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController id="r3M-yl-sr0" customClass="InfosViewController" sceneMemberID="viewController">
                     <view key="view" id="jxW-zf-C4C">
                         <rect key="frame" x="0.0" y="0.0" width="354" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -950,11 +950,11 @@ Animation is currently experimental and can cause quick glitch do to how MacOS h
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="gtest" destination="Nyb-ZY-c8Z" id="3CX-yc-Rf1"/>
-                        <outlet property="versionNumberLabel" destination="Nyb-ZY-c8Z" id="9sr-dl-dzp"/>
+                        <outlet property="versionNumberLabel" destination="Nyb-ZY-c8Z" id="D2e-mh-Cvj"/>
                     </connections>
                 </viewController>
                 <customObject id="KBN-ed-Qhm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="FaF-3I-g2a"/>
             </objects>
             <point key="canvasLocation" x="582" y="681"/>
         </scene>
