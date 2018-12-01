@@ -82,22 +82,46 @@
 			isa = PBXGroup;
 			children = (
 				8ED3D8A621B1B7430059AFF9 /* Main.storyboard */,
+				8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */,
 				8ED3D89E21B1B7420059AFF9 /* AppDelegate.h */,
 				8ED3D89F21B1B7420059AFF9 /* AppDelegate.m */,
-				8ED3D8A121B1B7420059AFF9 /* SettingsViewController.h */,
-				8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */,
+				8ED3D8C521B300390059AFF9 /* ViewController */,
+				8ED3D8C421B3002D0059AFF9 /* Helper */,
+				8ED3D8A921B1B7430059AFF9 /* Info.plist */,
+				8ED3D8AA21B1B7430059AFF9 /* main.m */,
+				8ED3D8C321B3001B0059AFF9 /* ScriptingBridge */,
+				8ED3D8AC21B1B7430059AFF9 /* FastFinder.entitlements */,
+			);
+			path = FastFinder;
+			sourceTree = "<group>";
+		};
+		8ED3D8C321B3001B0059AFF9 /* ScriptingBridge */ = {
+			isa = PBXGroup;
+			children = (
+				8ED3D8B221B1B88E0059AFF9 /* Finder.h */,
+				8ED3D8BF21B1DC150059AFF9 /* SystemEvents.h */,
+			);
+			path = ScriptingBridge;
+			sourceTree = "<group>";
+		};
+		8ED3D8C421B3002D0059AFF9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
 				8ED3D8B321B1BAD40059AFF9 /* FinderLogicHelper.h */,
 				8ED3D8B421B1BAD40059AFF9 /* FinderLogicHelper.m */,
 				8ED3D8BC21B1C0CF0059AFF9 /* UserSettingsHelper.h */,
 				8ED3D8BD21B1C0CF0059AFF9 /* UserSettingsHelper.m */,
-				8ED3D8A421B1B7430059AFF9 /* Assets.xcassets */,
-				8ED3D8A921B1B7430059AFF9 /* Info.plist */,
-				8ED3D8AA21B1B7430059AFF9 /* main.m */,
-				8ED3D8B221B1B88E0059AFF9 /* Finder.h */,
-				8ED3D8BF21B1DC150059AFF9 /* SystemEvents.h */,
-				8ED3D8AC21B1B7430059AFF9 /* FastFinder.entitlements */,
 			);
-			path = FastFinder;
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		8ED3D8C521B300390059AFF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8ED3D8A121B1B7420059AFF9 /* SettingsViewController.h */,
+				8ED3D8A221B1B7420059AFF9 /* SettingsViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		923F1EB5E6CE4B3BC6CE9557 /* Frameworks */ = {

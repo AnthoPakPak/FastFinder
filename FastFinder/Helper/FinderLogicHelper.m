@@ -18,7 +18,6 @@
 
 //for first launch
 static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
-//static CGFloat const DEFAULT_FINDER_WIDTH = 1440;
 
 
 @implementation FinderLogicHelper {
@@ -49,10 +48,8 @@ static FinderLogicHelper *instance = nil;
 }
 
 -(void) processFinderLogic {
-    // this is the finder
     finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.Finder"];
-    //    finder.launchFlags = kLSLaunchAndHide;
-//    SystemEventsApplication * systEvt = [SBApplication applicationWithBundleIdentifier:@"com.apple.SystemEvents"]; //pour envoyer des shortcuts à l'app https://github.com/tcurdt/shellhere/blob/master/main.m#L114
+//    SystemEventsApplication * systEvt = [SBApplication applicationWithBundleIdentifier:@"com.apple.SystemEvents"]; //to send shortcuts to the app (https://github.com/tcurdt/shellhere/blob/master/main.m#L114)
     
     
     NSLog(@"Frontmost : %hhd | Visible : %hhd", finder.frontmost, finder.visible);
@@ -72,16 +69,16 @@ static FinderLogicHelper *instance = nil;
     
     if (show) {
         NSLog(@"Show finder");
-        //                [finder activate];
+        //[finder activate];
         [self runCommand:@"open -j -a Finder"]; //activate without moving window when it outside of screen
         finder.visible = YES;
 
-        finderWindow = [self getFinderWindowFromWindows:finderWindows]; //it should be done after finder.visible = YES
+        finderWindow = [self getFinderWindowFromWindows:finderWindows]; //it has to be done after finder.visible = YES
         
-        //set size
+        //set size on first time
         if (lastFinderHeight == 0) {
             lastFinderHeight = DEFAULT_FINDER_HEIGHT;
-            [finderWindow setBounds:NSMakeRect(0, screenHeight, screenWidth, lastFinderHeight)]; //on set les bounds suivants : {toutAGaucheDeLecran, enDehorsDeLecranEnBas_pourEtreInvisible, tailleEcran, lastFinderHeight)}
+            [finderWindow setBounds:NSMakeRect(0, screenHeight, screenWidth, lastFinderHeight)]; //we set following bounds : {toutAGaucheDeLecran, enDehorsDeLecranEnBas_pourEtreInvisible, tailleEcran, lastFinderHeight)}
         }
         
         if (animated) {
@@ -99,10 +96,10 @@ static FinderLogicHelper *instance = nil;
         
         if (animated) {
             [self animateOffsetWindow:finderWindow directionUp:NO completionHandler:^{
-                //si la frontmost window au moment de faire le raccourci prend tout l'ecran (window.bounds == screen.bounds)
-                finder.visible = NO; //c'est ceci qui cause le glitch qui est visible quand il n'y a pas d'autre fenetre derriere, car quand on réactive le finder après l'avoir hidden, il restaure position
+                //if the frontmost window (not finder one) at the time of making the shortcut takes the whole screen (window.bounds == screen.bounds)
+                finder.visible = NO; //this is what causes the glitch that is visible when there is no other window behind, because when you reactivate the finder after hiding it, it restores position
                 
-                //si la frontmost window au moment de faire le raccourci NE prend PAS tout l'ecran (window.bounds == screen.bounds), mais le probleme de cette version, c'est que le fait de ne pas visible=NO le finder, fait que si on clique sur l'icone manuellement, il reste à sa position…
+                //if the frontmost window (not finder one) at the time of making the shortcut does NOT take the whole screen (window.bounds != screen.bounds), but the problem of this version is that the fact of not setting finder visible=NO, causes that if we click manually on Finder dock icon, it stays at its position on bottom…
 //                finder.frontmost = NO;
 ////                finder.visible = NO;
 //                [finderWindow setPosition:NSMakePoint(-1440, 900)];
@@ -118,11 +115,11 @@ static FinderLogicHelper *instance = nil;
 
     if (finderWindows.count > 1) {
         for (FinderWindow *finderWin in finderWindows) {
-            //            NSLog(@"win : %@", finderWin.properties); //this can cause glitch…
+            //NSLog(@"win : %@", finderWin.properties); //this can cause glitch…
             
             if (finderWin.id == idOfVisorFinderWindow) {
                 finderWindow = finderWin;
-                finderWindow.index = 1; //setting this window the frontmost one
+                finderWindow.index = 1; //set this window the frontmost one
             }
         }
         
@@ -171,13 +168,13 @@ static FinderLogicHelper *instance = nil;
 //        NSLog(@"kAccordingToDirection = %f", kAccordingToDirection);
         
         float offset = kAccordingToDirection * lastFinderHeight + (screenHeight - lastFinderHeight);
-//            NSLog(@"offset = %f", offset);
+//        NSLog(@"offset = %f", offset);
         [finderWindow setPosition:NSMakePoint(0, offset)];
         
         usleep(3000);
     }
     
-    //un dernier coup pour être sur d'être au bon endroit (au final ça ne fonctionne que pour SHOW car quand le finder est en bas, MacOS n'autorise pas sa frame d'aller plus bas que sa status bar)
+    //a last move to be sure to be on the right place (in the end it only works for SHOW because when the finder is down, MacOS does not allow its frame to go lower than its status bar)
     float kAccordingToDirection = directionUp ? 0 : 1;
     float offset = kAccordingToDirection * lastFinderHeight + (screenHeight - lastFinderHeight);
     NSLog(@"offset = %f", offset);
