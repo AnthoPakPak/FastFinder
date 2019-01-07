@@ -1,5 +1,7 @@
 # FastFinder
 
+[![Join the chat at https://gitter.im/AnthoPakPak-FastFinder/community](https://badges.gitter.im/AnthoPakPak-FastFinder/community.svg)](https://gitter.im/AnthoPakPak-FastFinder/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 FastFinder goal is to always have a Finder window at a key press. Set your preferred shortcut, and use it to open your Finder window. The same window will be opened no matter on which Space you are !
 
 **FastFinder is fully compatible with MacOS Mojave and compliant with System Integrity Protection, so that you don't have to disable it.**
