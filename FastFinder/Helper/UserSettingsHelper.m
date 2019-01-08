@@ -28,7 +28,7 @@ static UserSettingsHelper *instance = nil;
 }
 
 -(void) setDefaultsSettings {
-    self.launchOnStartup = YES;
+    self.launchOnStartup = NO; //should be YES but currently feature isn't working so I disable it
     self.animated = YES;
     self.animationVelocity = 0.4;
 }
@@ -48,6 +48,7 @@ static UserSettingsHelper *instance = nil;
         _launchOnStartup = launchOnStartup;
         [[NSUserDefaults standardUserDefaults] setBool:launchOnStartup forKey:kSettingsLaunchOnStartup];
         
+        //has to be fixed with : https://theswiftdev.com/2017/10/27/how-to-launch-a-macos-app-at-login/ . for now, please add it manually to login items in System Preferences
         SMLoginItemSetEnabled ((__bridge CFStringRef)@"com.acocagne.FastFinder", launchOnStartup); // NO to cancel launch at login
     }
 }

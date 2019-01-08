@@ -73,7 +73,15 @@
 - (IBAction)didChangeLaunchOnStartup:(NSButton*)button {
     NSLog(@"Setting launchOnStartup to %ld", (long)button.state);
 
-    [UserSettingsHelper getInstance].launchOnStartup = button.state;
+    //[UserSettingsHelper getInstance].launchOnStartup = button.state;
+    
+    NSAlert *alert = [NSAlert new];
+    [alert setMessageText:@"⚠️ Feature not available currently"];
+    [alert setInformativeText:@"Sorry, launch at startup isn't supported for now.\n\nFor now, please do it manually by going to System Preferences > Users and groups > Login Items and adding FastFinder there.\n\nThe feature will be available when I'll have time to implement it, or if you have some free time, feel free to make a PR on https://github.com/AnthoPakPak/FastFinder 😉"];
+    [alert addButtonWithTitle:@"OK"];
+    [alert runModal];
+    
+    button.state = NSControlStateValueOff;
 }
 
 - (IBAction)didChangeAnimated:(NSButton*)button {
