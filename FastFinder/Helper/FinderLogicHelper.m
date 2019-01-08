@@ -17,7 +17,7 @@
 //CONFIGURATION
 
 //for first launch
-static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
+static CGFloat const DEFAULT_FINDER_HEIGHT = 550;
 
 
 @implementation FinderLogicHelper {
@@ -26,6 +26,7 @@ static CGFloat const DEFAULT_FINDER_HEIGHT = 500;
     CGFloat screenHeight;
     CGFloat screenWidth;
 
+    NSInteger idOfMainVisorFinderWindow;
     NSInteger idOfVisorFinderWindow;
     CGFloat lastFinderHeight;
 }
@@ -87,6 +88,18 @@ static FinderLogicHelper *instance = nil;
     } else {
         NSLog(@"Hide finder");
         
+        //experimental : reopen last closed window/tab; unfortunately, there is no way to distinguish tabs from window…
+        if ([self frontmostWindowIsTabOfMainWindow:finderWindows]) {
+            idOfVisorFinderWindow = ((FinderWindow*)finderWindows[0]).id; //show tab of main window
+        } else { //frontmost window isn't mainWindow nor a tab of mainWindow
+//            ((FinderWindow*)finderWindows[0]).index++;
+            for (int i = 0; i < [self getMainWindow:finderWindows].index; i++) {
+                ((FinderWindow*)finderWindows[i]).index++; //send all windows which are above mainWindow to back
+            }
+            [self getMainWindow:finderWindows].index = 1; //send mainWindow to front
+            idOfVisorFinderWindow = idOfMainVisorFinderWindow; //restore main window
+        }
+        
         finderWindow = [self getFinderWindowFromWindows:finderWindows];
         CGFloat finderHeight = finderWindow.bounds.size.height;
 
@@ -97,6 +110,8 @@ static FinderLogicHelper *instance = nil;
         if (animated) {
             [self animateOffsetWindow:finderWindow directionUp:NO completionHandler:^{
                 //if the frontmost window (not finder one) at the time of making the shortcut takes the whole screen (window.bounds == screen.bounds)
+
+//                finder.frontmost = NO; //use this to allow working "Show in Finder" but experience is not as well as with finder.visible
                 finder.visible = NO; //this is what causes the glitch that is visible when there is no other window behind, because when you reactivate the finder after hiding it, it restores position
                 
                 //if the frontmost window (not finder one) at the time of making the shortcut does NOT take the whole screen (window.bounds != screen.bounds), but the problem of this version is that the fact of not setting finder visible=NO, causes that if we click manually on Finder dock icon, it stays at its position on bottom…
@@ -114,24 +129,8 @@ static FinderLogicHelper *instance = nil;
     FinderWindow *finderWindow = nil;
 
     if (finderWindows.count > 1) {
-        for (FinderWindow *finderWin in finderWindows) {
-            //NSLog(@"win : %@", finderWin.properties); //this can cause glitch…
-            
-            if (finderWin.id == idOfVisorFinderWindow) {
-                finderWindow = finderWin;
-                finderWindow.index = 1; //set this window the frontmost one
-            }
-        }
-        
-        //don't really know why i have to do this a second time, but without this it doesn't work
-        if (finderWindow.id != idOfVisorFinderWindow) {
-            NSLog(@"Window isn't the good one, searching for the good one…");
-            for (FinderWindow *finderWin in finderWindows) {
-                if (finderWin.id == idOfVisorFinderWindow) {
-                    finderWindow = finderWin;
-                }
-            }
-        }
+        finderWindow = [self getMainWindow:finderWindows];
+        finderWindow.index = 1;
     }
     
     if (finderWindow == nil) {
@@ -147,11 +146,13 @@ static FinderLogicHelper *instance = nil;
 
 //            [self runCommand:@"osascript -e \"tell application \"Finder\" to make new Finder window\""];
         }
+        idOfMainVisorFinderWindow = finderWindow.id;
+        idOfVisorFinderWindow = finderWindow.id;
     }
     
 //    NSLog(@"Window : id:%ld, name:%@, index:%ld, idOfVisorFinderWindow:%ld", finderWindow.id, finderWindow.name, finderWindow.index, idOfVisorFinderWindow);
     
-    idOfVisorFinderWindow = finderWindow.id;
+    //idOfVisorFinderWindow = finderWindow.id;
     return finderWindow;
 }
 
@@ -186,7 +187,42 @@ static FinderLogicHelper *instance = nil;
 }
 
 
+-(FinderWindow*) getMainWindow:(SBElementArray*)finderWindows {
+    FinderWindow *mainWindow;
+    for (FinderWindow *finderWin in finderWindows) {
+        //NSLog(@"win : %@", finderWin.properties); //this can cause glitch…
+        
+        if (finderWin.id == idOfVisorFinderWindow) {
+            mainWindow = finderWin;
+            break;
+        }
+    }
+    
+    //don't really know why i have to do this a second time, but without this it doesn't work
+    if (mainWindow.id != idOfVisorFinderWindow) {
+        NSLog(@"Window isn't the good one, searching for the good one…");
+        for (FinderWindow *finderWin in finderWindows) {
+            if (finderWin.id == idOfVisorFinderWindow) {
+                NSLog(@"Window finally found !");
+                mainWindow = finderWin;
+                break;
+            }
+        }
+    }
+    
+    return mainWindow;
+}
 
+-(BOOL) frontmostWindowIsTabOfMainWindow:(SBElementArray*)finderWindows {
+    FinderWindow *frontmostWindow = (FinderWindow*)finderWindows[0];
+    FinderWindow *mainWindow = [self getMainWindow:finderWindows];
+    
+    if (CGRectEqualToRect(frontmostWindow.bounds, mainWindow.bounds) && CGPointEqualToPoint(frontmostWindow.position, mainWindow.position)) {
+        return YES;
+    }
+    
+    return NO;
+}
 
 #pragma mark - Misc
 
