@@ -27,11 +27,11 @@ FastFinder is written in `Objective-C` and is a standalone app. It listens for s
 
 ## Changelog
 
-- **0.1.1**
-**Support for multiple tabs in Finder window** : the last opened tab in your main Finder window will be reopened. Since `AppleScript` doesn't provide informations regarding if the window is a tab part of a window or if it's a main window (everything is a window), I've made the choice to detect if it's a tab by comparing window bounds. It works well, but it may be improved.
+- **0.1.1**  
+**Support for multiple tabs in Finder window** : the last opened tab in your main Finder window will be reopened. Since `AppleScript` doesn't provide informations regarding if the window is a tab part of a window or if it's a main window (everything is a window), I've made the choice to detect if it's a tab by comparing window bounds. It works well, but it may be improved.  
 **Temporarily disable Launch At Startup feature** : disabled this setting and explained how to do it manually, since it is inexplicably long to implement in a Cocoa app. If you have time, feel free to submit a PR with the feature ;) (here is a good link to start with https://theswiftdev.com/2017/10/27/how-to-launch-a-macos-app-at-login/).
 
-- **0.1**
+- **0.1**  
 Initial release
 
 
